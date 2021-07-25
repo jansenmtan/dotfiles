@@ -1,0 +1,113 @@
+extends c
+
+snippet main "main method definition"
+public static void
+main(String[] args) 
+{
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet 251pre "ECE 251 file preamble"
+/*
+ * Class: ECE25100 Object Oriented Programming
+ * Instructor: Xiaoli Yang
+ * Author: Jansen Tan
+ * Assignment: `!p snip.rv = re.findall("{0}\d{0}".format(os.path.sep), os.path.abspath(fn))[-1][1]`
+ * File Name: `!p snip.rv = fn`
+ * Date: `date +%m/%d/%Y`
+ **/
+
+endsnippet
+
+snippet javadoc "javadoc string"
+/**
+ * ${1:desc}
+ * @param $2
+ * @return $3
+ */$0
+endsnippet
+
+snippet print "System out print" 
+System.out.print($1);$0
+endsnippet
+
+snippet println "System out println" 
+System.out.println($1);$0
+endsnippet
+
+snippet "con(structor)?" "constructor" r
+$1 
+`!p snip.rv = os.path.splitext(fn)[0]`($2) 
+{
+	$3
+}$0
+endsnippet
+
+snippet "get\s+(.+)\s+(.+)" "getter method" r
+public `!p snip.rv = match.group(1)` get`!p snip.rv = match.group(2)[0].upper() + match.group(2)[1:]`() { return `!p snip.rv = match.group(2)`; }
+endsnippet
+
+snippet "set\s+(.+)\s+(.+)" "setter method" r
+public void set`!p snip.rv = match.group(2)[0].upper() + match.group(2)[1:]`(`!p snip.rv = match.group(1) + " " + match.group(2)`) { this.`!p snip.rv = match.group(2)` = `!p snip.rv = match.group(2)`; }
+endsnippet
+
+snippet foreach "foreach loop"
+for (${1:member} : ${2:iterable}) {
+	${0:body}
+}
+endsnippet
+
+snippet class "class definition"
+${1:modifiers} class 
+${2:ClassName} 
+{
+	${3:body}
+}$0
+endsnippet
+
+snippet interface "interface definition"
+${1:modifiers} interface 
+${2:ClassName} 
+{
+	${3:body}
+}$0
+endsnippet
+
+snippet javafx-app "JavaFX Application template"
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class
+${1:MyApplication}
+extends Application
+{
+	// Initialize before the app starts
+	// optional
+	public void
+	init()
+	{
+	}
+	
+	// Called automatically to start the application
+	public void
+	start(Stage primaryStage)
+	{
+	}
+
+	// Clean up just before the app stops
+	// optional
+	public void
+	stop()
+	{
+	}
+
+	public static void
+	main(String[] args)
+	{
+		// launch called exactly once
+		launch(args);
+	}
+}
+endsnippet
+

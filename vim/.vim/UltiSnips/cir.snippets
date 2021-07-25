@@ -1,0 +1,54 @@
+snippet netlist "netlist template"
+.title ${1:title}
+
+$2
+
+.end
+endsnippet
+
+snippet /^;/ "continue line" rA
++	$0
+endsnippet
+
+snippet comp "component / circuit element"
+${1:name} 
++	${2:nodes} 
++	${3:values}
+endsnippet
+
+snippet pulse "DC pulse"
+pulse (
++	${1:VLow} 
++	${2:VHigh} 
++	${3:TDelay} 
++	${4:TRise} 
++	${5:TFall} 
++	${6:PW_pulse_width} 
++	${7:PERiod} 
++	${8:PHASE_shift}
++)$0
+endsnippet
+
+snippet gnd "ground"
+0
+endsnippet
+
+snippet tran "transient simulation"
+tran 
++	${1:step_size} 
++	${2:end_time}
+endsnippet
+
+snippet control ".control section"
+.control
+$1
+.endc
+$0
+endsnippet
+
+snippet foreach "foreach loop"
+foreach ${1:vector(s)}
+	$2
+end$0
+endsnippet
+

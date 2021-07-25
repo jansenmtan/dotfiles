@@ -1,0 +1,145 @@
+xkb_keymap {
+	xkb_keycodes {
+		include "evdev+aliases(qwerty)"
+	};
+	xkb_types { include "complete" };
+	xkb_compatibility {
+		include "complete+chromebook"
+
+		interpret ISO_Group_Shift { action = SetGroup(group=2); };
+		interpret Hangul { action = SetGroup(group=2); };
+
+// 		interpret Pointer_Up    { action = MovePtr(x=+0, y=-2, accelerate=true); };
+// 		interpret Pointer_Left  { action = MovePtr(x=-2, y=+0, accelerate=true); };
+// 		interpret Pointer_Down  { action = MovePtr(x=+0, y=+2, accelerate=true); };
+// 		interpret Pointer_Right { action = MovePtr(x=+2, y=+0, accelerate=true); };
+	};
+	xkb_symbols {
+		include "pc+us+inet(evdev)+keypad(pointerkeys)+chromebook(overlay)"
+
+		// Menu is useless. Replace with based LevelThree
+		key <COMP> { [ ISO_Level3_Shift, Menu ] };
+
+		// Useless if modifier_map is previously set, like it is in the include statement
+		// Only overwrites modifier_map, doesn't clear it.
+// 		modifier_map Mod1 { <LALT> };
+// 		modifier_map Mod2 { <NMLK> };
+// 		modifier_map Mod5 { <LVL3> };
+// 		modifier_map Control { <RCTL> };
+// 		modifier_map Mod1 { <RALT> };
+// 		modifier_map Mod3 { <LWIN> };
+// 		modifier_map Mod4 { <RWIN> };
+// 		modifier_map Mod5 { <MDSW> };
+// 		modifier_map Mod1 { <META> };
+// 		modifier_map Mod3 { <SUPR> };
+// 		modifier_map Mod4 { <HYPR> };
+
+		// key <CAPS> { [ ISO_Group_Shift ] };
+		key <CAPS> { [ Hangul ] }; // Need a sym that literally no one uses.
+// 		key <CAPS> {         
+// 			vmods = Super
+// 			// symbols[Group1]= [ ISO_Group_Shift ]
+// 			,symbols[Group1]= [ Super_L ]
+// 			// doing any action disables modifier_map functionality
+// 			// FUCK
+// 			// ,actions[Group1]= [ NoAction() ]
+// 			// ,actions[Group1]= [ RedirectKey(keycode=<HYPR>, modifiers=Hyper) ]
+// 			// ,actions[Group1]= [ RedirectKey(keycode=<I147>, clearmods=Hyper) ]
+// 			// ,actions[Group1]= [ RedirectKey(keycode=<MDSW>) ]
+// 			,actions[Group1]= [ RedirectKey(keycode=<LWIN>, mods=Mod4) ]
+// 		};
+
+		// https://wiki.archlinux.org/index.php/X_keyboard_extension#Caps_hjkl_as_vimlike_arrow_keys
+		// Vim like key group
+		key <AC06> {
+			symbols[Group2] = [ Left ]
+			,actions[Group2] = [ RedirectKey(keycode=<LEFT>) ]
+		};
+		key <AC07> {
+			symbols[Group2]= [ Down ]
+			,actions[Group2]= [ RedirectKey(keycode=<DOWN>) ]
+		};
+		key <AC08> {
+			symbols[Group2]= [ Up ]
+			,actions[Group2]= [ RedirectKey(keycode=<UP>) ]
+		};
+		key <AC09> {
+			symbols[Group2]= [ Right ]
+			,actions[Group2]= [ RedirectKey(keycode=<RGHT>) ]
+		};
+		key <AD06> {
+			symbols[Group2]= [ Home ]
+			,actions[Group2]= [ RedirectKey(keycode=<HOME>) ]
+		};
+		key <AD07> {
+			symbols[Group2]= [ Next ]
+			,actions[Group2]= [ RedirectKey(keycode=<PGDN>) ]
+		};
+		key <AD08> {
+			symbols[Group2]= [ Prior ]
+			,actions[Group2]= [ RedirectKey(keycode=<PGUP>) ]
+		};
+		key <AD09> {
+			symbols[Group2]= [ End ]
+			,actions[Group2]= [ RedirectKey(keycode=<END>) ]
+		};
+		key <AD11> {         
+			symbols[Group2]= [ Escape ]
+			,actions[Group2]= [ RedirectKey(keycode=<ESC>) ]
+		};
+
+		// 'Save my right pinky' key group
+		key <SPCE> {         
+			symbols[Group2]= [ Return ]
+			,actions[Group2]= [ RedirectKey(keycode=<RTRN>) ]
+		};
+		key <TAB> {         
+			symbols[Group2]= [ BackSpace ]
+			,actions[Group2]= [ RedirectKey(keycode=<BKSP>) ]
+		};
+		key <AB05> { // b
+			symbols[Group2]= [ backslash, bar ]
+			,actions[Group2]= [ RedirectKey(keycode=<BKSL>) ]
+		};
+		key <AD01> { // q
+			symbols[Group2]= [ equal, plus ]
+			,actions[Group2]= [ RedirectKey(keycode=<AE12>) ]
+		};
+		key <AB07> { // m
+			symbols[Group2]= [ minus, underscore ]
+			,actions[Group2]= [ RedirectKey(keycode=<AE11>) ]
+		};
+		
+// 		// https://wiki.archlinux.org/index.php/X_keyboard_extension#Mouse_control
+// 		key <COMP> { symbols[Group2]= [ Pointer_EnableKeys ] };
+// 		key <AD03> {
+// 			symbols[Group2]= [ Pointer_Up, XF86ScrollUp ]
+// 			// ,actions[Group2]= [ MovePtr(x=+0, y=-2, accelerate=true),	RedirectKey(keycode=<I185>) ]
+// 		};
+// 		key <AC02> {
+// 			symbols[Group2]= [ Pointer_Left ]
+// 			// ,actions[Group2]= [ MovePtr(x=-2, y=+0, accelerate=true) ]
+// 		};
+// 		key <AC03> {
+// 			symbols[Group2]= [ Pointer_Down ]
+// 			// ,actions[Group2]= [ MovePtr(x=+0, y=+2, accelerate=true) ]
+// 		};
+// 		key <AC04> {
+// 			symbols[Group2]= [ Pointer_Right ]
+// 			// ,actions[Group2]= [ MovePtr(x=+2, y=+0, accelerate=true) ]
+// 		};
+// 		key <AD02> {
+// 			symbols[Group2]= [ Pointer_Button3, Pointer_Button2 ]
+// 		};
+// 		key <AD04> {
+// 			symbols[Group2]= [ Pointer_Button1 ]
+// 		};
+
+		// "F6 is a terrible keybind, Firefox!"
+		key <AB10> { // /
+			symbols[Group2]= [ F6 ]
+			,actions[Group2]= [ RedirectKey(keycode=<FK06>) ]
+		};
+	};
+	xkb_geometry { include "pc(pc104)" };
+};

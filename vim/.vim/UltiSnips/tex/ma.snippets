@@ -1,0 +1,44 @@
+snippet iintv "double integral for volume"
+\int_{${1:a}}^{${2:b}} 
+\paren{ 
+	\int_{${3:c}}^{${4:d}} 
+	\paren{ 
+		${5:f} 
+	}\ ${6:dy} 
+}\ ${7:dx}
+endsnippet
+
+snippet iintsa "double integral for surface area"
+\int_{${1:a}}^{${2:b}} 
+\paren{ 
+	\int_{${3:c}}^{${4:d}} 
+	\sqrt{ 
+		\paren{${5:dfdx}}^2 
+		+ \paren{${6:dfdy}}^2 
+		+ 1 
+	}\ ${6:dy} 
+}\ ${8:dx}
+endsnippet
+
+snippet iiintv "triple integral for mass"
+\int_{${1:a1}}^{${2:a2}} 
+\paren{ 
+	\int_{${3:b1}}^{${4:b2}} 
+	\paren{ 
+		\int_{${3:c1}}^{${4:c2}} 
+		\paren{ 
+			${5:f} 
+		}\ ${6:dz} 
+	}\ ${7:dy} 
+}\ ${8:dx}
+endsnippet
+
+snippet intline "line integral"
+\int_{${1:a}}^{${2:b}} 
+	\paren{
+		${3:f}
+	}
+	${4: norm_v}
+\ dt
+endsnippet
+

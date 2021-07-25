@@ -1,0 +1,3 @@
+# https://stackoverflow.com/questions/30985436/is-there-a-way-in-bash-o-vi-mode-to-have-the-prompt-indicate-normal-command-mod
+set show-mode-in-prompt
+set editing-mode vi

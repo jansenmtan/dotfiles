@@ -1,0 +1,42 @@
+snippet usmile "Upside-down smiley"
+🙃
+endsnippet
+
+snippet slightsmile "Slight smile"
+🙂
+endsnippet
+
+snippet snippet
+snippet ${1:snipName} "${2:desc}" ${3:opts}
+$0
+`!p snip.rv = "endsnippet"`
+endsnippet
+
+snippet () "parenthesis - move inside" iA
+(${1:${VISUAL}})$0
+endsnippet
+
+snippet "f(ile)?p(ath)?" "return current file path" r
+`!p snip.rv = os.path.abspath(fn)`
+endsnippet
+
+snippet "f(ile)?n(ame)?" "return current file name" r
+`!p snip.rv = fn`
+endsnippet
+
+snippet "f(ile)?n(ame)?0" "return current file name root" r
+`!p snip.rv = os.path.splitext(fn)[0]`
+endsnippet
+
+snippet "f(ile)?n(ame)?1" "return current file name extention" r
+`!p snip.rv = os.path.splitext(fn)[1]`
+endsnippet
+
+snippet	"d(ate)?t(ime)?" "datetime" r
+`date "+%a %m-%d-%Y %l:%M:%S %p"`
+endsnippet
+
+snippet s "surround"
+$1${VISUAL}$1$0
+endsnippet
+

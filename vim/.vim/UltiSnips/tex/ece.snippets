@@ -1,0 +1,288 @@
+snippet kmap "Karnaugh map 2x2"
+\begin{tabular}{|c|c c|}
+	\hline
+	\( x_1 \) &
+	\multicolumn{2}{c|}{\( x_2 \)}
+	\\\\
+	\hline
+	\hline
+	  & 
+	0 &
+	1 
+	\\\\
+	\hline
+	0 & 
+	\( m_1 \) &
+	\( m_2 \)
+	\\\\
+	1 & 
+	\( m_3 \) &
+	\( m_4 \)
+	\\\\
+	\hline
+\end{tabular}
+endsnippet
+
+snippet truthtable "truth table"
+\begin{tabular}{|c c|c|}
+	\hline
+	\( x_1 \) &
+	\( x_2 \) &
+	\( f \) 
+	\\\\
+	\hline
+	0 &
+	0 &
+	\( m_1 \)
+	\\\\
+	0 &
+	1 &
+	\( m_2 \)
+	\\\\
+	1 &
+	0 &
+	\( m_3 \)
+	\\\\
+	1 &
+	1 &
+	\( m_4 \)
+	\\\\
+	\hline
+\end{tabular}
+endsnippet
+
+snippet transformer "transformer"
+(${1:x}, ${2:y})
+node[transformer core] (T) {}
+
+(T.base)
+node {\( ${3:1:n} \)}
+
+(T.A1)
+${4:side 1 circuit}
+
+(T.B1)
+${5:side 2 circuit}
+
+(T.A1) to[open, v=\( \underline{V}_1 \)] (T.A2)
+(T.B1) to[open, v=\( \underline{V}_2 \)] (T.B2)
+endsnippet
+
+snippet circuit "circuitikz circuit"
+\\circuit{
+	\draw
+	$1
+	;
+}$0
+endsnippet
+
+snippet dc-load-line "DC load line"
+\begin{tikzpicture}[
+	declare function={
+		id(\x)
+		= (${1:biasing voltage} - \x) / ${2:denominator};
+	}
+	]
+	\begin{axis}[
+		,xmin=0
+		,xmax=$1
+		,ymin=0
+		,title={
+			DC load line
+		}
+		,xtick={
+			$1
+		}
+		,ytick={
+			0,
+			${3:max current}
+		}
+		,extra x ticks={
+			${4:q-point voltage}
+		}
+		,extra x tick labels={
+			\(\SI{$4}{\volt}\)
+		}
+		,extra y ticks={
+			${5:q-point current}
+		}
+		,extra y tick labels={
+			\(\SI{$5}{\milli\ampere}\)
+		}
+		,ylabel=\( I_{D} \left( \si{\ampere}\right) \)
+		,xlabel=\( V_{DS} \left( \si{\volt}\right) \)
+		]
+		\addplot+[
+			,domain=0:$1
+			,mark=none
+			,smooth
+			,thick
+			]{
+				id(x)
+			};
+		\addplot+[
+			] coordinates {
+				($4, $5)
+			};
+		\addplot[
+			,domain=0:$4
+			,dashed
+			,mark=none
+			,thick
+			]{
+				$5
+			};
+		\addplot[
+			,dashed
+			,mark=none
+			,thick
+			] coordinates {
+				($4, 0)
+				($4, $5)
+			}
+			node[
+				pin=60:{
+					Q-point
+					}
+				]{};
+		\addplot[
+			,dashed
+			,mark=none
+			,thick
+			] coordinates {
+				(${6:voltage limit}, 0)
+				($6, $3)
+			};
+	\end{axis}
+\end{tikzpicture}$0
+endsnippet
+
+snippet MOSFET-small-signal-model "MOSFET small signal model"
+\circuit{
+	\draw
+	(0,0)
+	to[
+		sV,
+		l=\(V_{s}\)
+		] ++(0,-3)
+	(0,0)
+	to[
+		R,
+		l=\(R_{ \text{sig}}\),
+		a=$1,
+		] ++(3,0)
+	to[
+		R,
+		a^=$2,
+		l_=\(R_{g}\)
+		] ++(0,-3)
+	(3,0)
+	to[
+		short, 
+		-o
+		] ++(3,0)
+		node (G) {}
+	to[
+		open,
+		v=\(v_{gs}\)
+		] ++(0,-3)
+	(G)
+	to[
+		open
+		] ++(3,0)
+		node (D) {}
+	to[
+		cI,
+		a=\(g_{m} v_{gs}\)
+		] ++(0,-3)
+		node (S) {}
+	(D)
+	to[
+		short,
+		f<=\(i_{d}\),
+		] ++(3,0)
+		node (ro) {}
+	to[
+		R,
+		l=\(r_{o}\),
+		a=$3
+		] ++(0,-3)
+	(ro)
+	to[short, .-] ++(3,0)
+		node (RD) {}
+	to[
+		R,
+		l=\(R_{D}\),
+		a=$4
+		] ++(0,-3)
+	(RD)
+	to[short, .-] ++(3,0)
+		node (RL) {}
+	to[
+		R,
+		l=\(R_{L}\),
+		a=$5
+		] ++(0,-3)
+	to[
+		short,
+		-o
+		] ++(1,0)
+		node (end) {}
+	(RL)
+	to[
+		short,
+		-o
+		] ++(1,0)
+		node[right] {\(V_{o}\)}
+	(G)
+	node[above] {G}
+	(D)
+	node[above] {D}
+	(S)
+	node[below] {S}
+	(0,-3)
+	to[
+		short
+		] (end)
+	(0,-3)
+	node[ground] {}
+	;
+}$0
+endsnippet
+
+snippet wye "down y symbol"
+\\Ydown
+endsnippet
+
+snippet laplaced "laplace transform definition"
+\mathcal{L}\left\\{ $1 \right\\}
+= \int_{0^{-}}^{\infty}\paren{
+	$2
+	e^{-st}
+}\ dt$0
+endsnippet
+
+snippet laplace "laplace transform"
+\mathcal{L}\left\\{ 
+	${1:${VISUAL}} 
+\right\\}$0
+endsnippet
+
+snippet laplacei "inverse laplace transform"
+\mathcal{L}^{-1} \left\\{ 
+	${1:${VISUAL}} 
+\right\\}$0
+endsnippet
+
+snippet fourier "fourier transform"
+\mathcal{F}\left\\{ 
+	${1:${VISUAL}} 
+\right\\}$0
+endsnippet
+
+snippet to "circuit element" b
+to[
+	$1
+] ++($2,$3)$0
+endsnippet
+

@@ -1,0 +1,75 @@
+extends c
+
+snippet template "template"
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity ${1:template} is 
+	port(
+		${2:signals}
+	);
+end entity $1;
+
+architecture dataflow of $1 is
+
+begin 
+$3
+end architecture dataflow;
+endsnippet
+
+snippet entity "entity"
+entity ${1:example} is 
+	port(
+		${2:signals}
+	);
+end entity $1;
+endsnippet
+
+snippet arch "architecture"
+architecture dataflow of ${1:entity} is
+	$2
+begin
+	$3
+end architecture dataflow;
+endsnippet
+
+snippet comp "component"
+component ${1:entity} is 
+	port(
+		${2:signals}
+	);
+end component;
+endsnippet
+
+snippet gen "generate statement"
+${1:label}: for ${2:parameter} in ${3:range} generate
+	${4:concurrent statements}
+end generate $1;$0
+endsnippet
+
+snippet proc "process"
+${1:optional_label: }process (${2:sensitivity_list})
+begin
+	$3
+end process;$0
+endsnippet
+
+priority 100
+snippet if "if statement"
+if ($1) then
+	$2
+end if;
+endsnippet
+
+snippet case "case statement"
+${1:optional_label: }case ${2:var} is
+$3
+${4:when others =>
+	;}
+end case;$0
+endsnippet
+snippet wh "when case statement"
+when ${1:value} =>
+	$2;$0
+endsnippet
+

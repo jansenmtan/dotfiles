@@ -1,0 +1,18 @@
+! I actually have a super key now
+remove mod4 = Super_L
+add mod3 = Super_L
+
+! !
+! ! Swap Caps_Lock and Insert
+! !
+! remove Lock = Caps_Lock
+! keysym Insert = Caps_Lock
+! keysym Caps_Lock = Insert
+
+!
+! Remap Caps_Lock to Hyper_L
+!
+remove Lock = Caps_Lock
+! keysym Hyper_L = Caps_Lock ! Don't add this line, it breaks AutoKey
+keysym Caps_Lock = Hyper_L
+
