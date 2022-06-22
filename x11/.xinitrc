@@ -31,6 +31,10 @@ xrandr --output HDMI-1 --primary
 # disable screen sleeping
 xset s off -dpms &
 
+# set touchpad props
+xinput set-prop 8 "libinput Tapping Enabled" 1 &
+xinput set-prop 8 "libinput Natural Scrolling Enabled" 1 &
+
 # Outdated. Using xkbcomp
 # autokey-gtk &
 
@@ -39,9 +43,11 @@ xset s off -dpms &
 # systemctl --user start sxhkd
 
 # # # I want to use Alt_R for other programs and for only the wm to only use Alt_L
-# # # [ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
+# [ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
+xmodmap -e 'remove mod1 = Alt_L'
+xmodmap -e 'add mod3 = Alt_L'
 # # Better option: use xkbmap
-[ -f ~/.xkb/keymap/local ] && xkbcomp ~/.xkb/keymap/local $DISPLAY &
+[ -f ~/.local/share/X11/xkb/local ] && xkbcomp ~/.local/share/X11/xkb/local $DISPLAY &
 
 # The ARCH wiki told me to put this in if I have a .Xresources
 [ -f ~/.Xresources ] && xrdb -I$HOME ~/.Xresources &
@@ -59,6 +65,8 @@ wal -R
 
 # Start printing service
 # gksudo service cups start
+
+st -e bash -ic 'tmux a -t sys-admin' &
 
 # Actually start wm. Must be last (other than Xsession)
 [ -z $WM ] && WM=i3

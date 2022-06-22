@@ -78,7 +78,7 @@ endif
 call plug#begin()
 Plug 'SirVer/ultisnips'
 Plug 'ap/vim-css-color'
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'tag': 'v1.0' }
 Plug 'junegunn/vim-easy-align'
 call plug#end()
 
@@ -93,13 +93,22 @@ let g:vimtex_compiler_latexmk = {
         \ 'executable' : 'latexmk',
         \ 'options' : [ 
         \   '-xelatex',
+        \   '-shell-escape',
         \   '-file-line-error',
         \   '-synctex=1',
         \   '-interaction=nonstopmode',
         \ ],
         \}
 
-let g:vimtex_view_general_viewer='zathura'
+let g:vimtex_quickfix_latexlog = {
+        \ 'packages' : { 
+        \   'hyperref' : 0,
+        \ },
+        \}
+
+let g:vimtex_quickfix_ignore_filters = [
+      \ '.*Cannot patch .*, using .* instead..*',
+      \]
 
 let g:vimtex_fold_enabled=1
 

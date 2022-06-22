@@ -143,6 +143,8 @@ export LC_ALL=en_US.UTF-8
 export EDITOR=/usr/bin/nvim
 
 export PATH=$PATH:/home/whishkey/.local/bin
+export PATH=$PATH:/opt/ghidra_10.0.4_PUBLIC
+export PATH=$PATH:$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
 
 # GCC ARM path
 export PATH=$PATH:/home/whishkey/embedded/gcc-arm-none-eabi-9-2020-q2-update/bin
@@ -187,3 +189,28 @@ export QSYS_ROOTDIR="/home/whishkey/.cache/yay/quartus-free/pkg/quartus-free-qua
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
 
+# fuzzy find history on C-r
+bind '"\C-r": "\C-x1\e^\er"'
+bind -x '"\C-x1": __fzf_history';
+
+__fzf_history ()
+{
+__ehc $(history | fzf --tac --tiebreak=index | perl -ne 'm/^\s*([0-9]+)/ and print "!$1"')
+}
+
+__ehc()
+{
+if
+        [[ -n $1 ]]
+then
+        bind '"\er": redraw-current-line'
+        bind '"\e^": magic-space'
+        READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${1}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
+        READLINE_POINT=$(( READLINE_POINT + ${#1} ))
+else
+        bind '"\er":'
+        bind '"\e^":'
+fi
+}
+
+. "$HOME/.cargo/env"

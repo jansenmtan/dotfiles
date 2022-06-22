@@ -1,0 +1,17 @@
+snippet /[\[{("']/ "autopair these characters" iAr
+`!p pairs = {
+	'[': ']',
+	'(': ')',
+	'{': '}',
+	'"': '"',
+	"'": "'",
+}``!p snip.rv = match.group(0)`${1:${VISUAL}}`!p snip.rv = pairs[match.group(0)]`$0
+endsnippet
+
+priority 100
+snippet { "automatically make block"
+{
+	$0
+
+endsnippet
+

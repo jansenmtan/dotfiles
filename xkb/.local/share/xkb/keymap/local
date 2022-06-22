@@ -36,6 +36,8 @@ xkb_keymap {
 
 		// key <CAPS> { [ ISO_Group_Shift ] };
 		key <CAPS> { [ Hangul ] }; // Need a sym that literally no one uses.
+		key <LWIN> { [ Hangul ] }; // Chromebook Search key is LWIN apparently.
+//		key <RALT> { [ Overlay1_Enable ] };
 // 		key <CAPS> {         
 // 			vmods = Super
 // 			// symbols[Group1]= [ ISO_Group_Shift ]
