@@ -142,7 +142,7 @@ export LC_ALL=en_US.UTF-8
 
 export EDITOR=/usr/bin/nvim
 
-export PATH=$PATH:/home/whishkey/.local/bin
+export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/opt/ghidra_10.0.4_PUBLIC
 export PATH=$PATH:$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
 
@@ -213,4 +213,5 @@ else
 fi
 }
 
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] &&
+	. "$HOME/.cargo/env"
