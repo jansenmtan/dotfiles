@@ -112,6 +112,11 @@ let g:vimtex_quickfix_ignore_filters = [
 
 let g:vimtex_fold_enabled=1
 
+augroup MyVimtex
+  autocmd!
+  autocmd User VimtexEventQuit call vimtex#compiler#clean(0)
+augroup END
+
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
