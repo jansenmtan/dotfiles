@@ -1,0 +1,15 @@
+snippet table "create table"
+CREATE TABLE ${1:table}
+(
+	${2:schema}
+);$0
+endsnippet
+
+snippet pk "primary key"
+PRIMARY KEY ($1)$0
+endsnippet
+
+snippet fk "foriegn key"
+FOREIGN KEY ($1) REFERENCES $2
+endsnippet
+

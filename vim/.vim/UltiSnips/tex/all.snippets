@@ -90,6 +90,10 @@ snippet {} "curly brackets - move inside" iA
 {$1}$0
 endsnippet
 
+snippet < "angle brackets" i
+\\left\\langle${1:${VISUAL}}\\right\\rangle$0
+endsnippet
+
 snippet sum "summation notation"
 \\sum$1
 $2
@@ -117,6 +121,10 @@ endsnippet
 
 snippet eval "evaluate from, to"
 \\left[ ${1:${VISUAL}} \\right\\rvert$0
+endsnippet
+
+snippet /t(ext)?/ "text in math mode" r
+\\text{${1:${VISUAL}}}$0
 endsnippet
 
 priority -1
