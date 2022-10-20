@@ -116,6 +116,9 @@ let g:vimtex_fold_enabled=1
 
 let g:vimtex_view_method = 'zathura'
 
+" https://vi.stackexchange.com/questions/20560/why-does-vim-still-auto-indent-latex-after-i-set-noai-noci-nosi
+let g:vimtex_indent_ignored_envs = ['code', 'minted']
+
 augroup MyVimtex
   autocmd!
   autocmd User VimtexEventQuit call vimtex#compiler#clean(0)
