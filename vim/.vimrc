@@ -154,6 +154,8 @@ set exrc
 
 set mouse=a
 
+let g:python3_host_prog = '/usr/bin/python'
+
 " https://vimways.org/2018/vim-and-git/
 set autoread
 autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime | endif
