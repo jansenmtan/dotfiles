@@ -80,6 +80,7 @@ Plug 'SirVer/ultisnips'
 Plug 'ap/vim-css-color'
 Plug 'lervag/vimtex', { 'tag': 'v1.0' }
 Plug 'junegunn/vim-easy-align'
+Plug 'preservim/nerdtree'
 "Plug 'nvim-lua/plenary.nvim'
 "Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
