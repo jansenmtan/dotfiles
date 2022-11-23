@@ -1,0 +1,26 @@
+snippet /[<'"]/ "autopair these characters" iAr
+`!p pairs = {
+	'<': '>',
+	"'": "'",
+	'"': '"',
+}``!p snip.rv = match.group(0)`${1:${VISUAL}}`!p snip.rv = pairs[match.group(0)]`$0
+endsnippet
+
+snippet el "element with contents" i
+<${1:name}$2>${3:${VISUAL}}</$1>
+endsnippet
+
+snippet "(([a-z]+) )?e;" "element" rA
+<`!p snip.rv = match.group(2)`$1>$2</`!p snip.rv = match.group(2)`>
+endsnippet
+
+snippet input "input form"
+<input$1>
+endsnippet
+
+priority -1
+
+snippet c "comment" i
+<!-- $1 -->$0
+endsnippet
+

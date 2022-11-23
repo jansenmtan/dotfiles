@@ -24,6 +24,10 @@ ${1:${VISUAL}}
 \}$0
 endsnippet
 
+snippet d; "datetime comment" A
+% `date '+%a %m-%d-%Y %I:%M:%S %p'`
+endsnippet
+
 snippet intertext "intertext but multiline"
 \\intertext{%
 	${1:${VISUAL}} %
@@ -91,7 +95,7 @@ snippet {} "curly brackets - move inside" iA
 endsnippet
 
 snippet < "angle brackets" i
-\\left\\langle${1:${VISUAL}}\\right\\rangle$0
+\\left\\langle ${1:${VISUAL}} \\right\\rangle$0
 endsnippet
 
 snippet sum "summation notation"
@@ -123,13 +127,31 @@ snippet eval "evaluate from, to"
 \\left[ ${1:${VISUAL}} \\right\\rvert$0
 endsnippet
 
-snippet /t(ext)?/ "text in math mode" r
-\\text{${1:${VISUAL}}}$0
+snippet "" "double quotes in text mode" Ai
+\`\`$1''$0
+endsnippet
+
+snippet '' "single quotes in text mode" Ai
+\`$1'$0
+endsnippet
+
+snippet minted "minted environment"
+\begin{minted}{$1}
+$2
+\end{minted}
 endsnippet
 
 priority -1
+
 snippet it "item"
 \item 
 $1
 endsnippet
+
+priority -100
+
+snippet /t(ext)?/ "text in math mode" r
+\\text{${1:${VISUAL}}}$0
+endsnippet
+
 

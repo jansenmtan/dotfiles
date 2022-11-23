@@ -1,0 +1,14 @@
+snippet /(if|for)/ "if, for block" r
+`!p snip.rv = match.group(0)` $1
+end`!p snip.rv = match.group(0)`
+endsnippet
+
+priority -1
+snippet "f(unction)?" "create function definition" r
+function ${1:ret}${1/.+/ = /}${2:fname}(${3:args})
+% ${2/\w+/\U$0\E/}	${4:function summary}
+${5:% function description}
+	${6:% function body}
+end
+$0
+endsnippet

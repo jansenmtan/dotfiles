@@ -1,0 +1,22 @@
+extends html
+
+snippet	{{ "django template variable" Ai
+{{ $1 }}
+endsnippet
+
+snippet	{% "django template tag" Ai
+{% $1 %}
+endsnippet
+
+snippet if "django if block"
+{% if ${1:cond} %}
+$2
+{% endif %}
+endsnippet
+
+snippet block "block template tag"
+{% block ${1:${VISUAL}} %}
+$2
+{% endblock %}
+endsnippet
+
