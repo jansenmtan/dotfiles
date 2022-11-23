@@ -123,6 +123,7 @@ let g:vimtex_indent_ignored_envs = ['code', 'minted', 'itemize', 'enumerate']
 augroup MyVimtex
   autocmd!
   autocmd User VimtexEventQuit call vimtex#compiler#clean(0)
+  " need to also remove _minted cache
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -145,6 +146,7 @@ set foldmethod=syntax
 set conceallevel=1
 
 " autocmd FileType python setlocal shiftwidth=4 tabstop=4 noexpandtab
+autocmd FileType text setlocal shiftwidth=4 tabstop=4 expandtab
 
 set scrolloff=5
 
@@ -162,4 +164,5 @@ autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime | endif
 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+"autocmd filetype matlab nnoremap <localleader>rr <silent> <buffer> :split | execute 'terminal ...
 
