@@ -170,3 +170,11 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 "autocmd filetype matlab nnoremap <localleader>rr <silent> <buffer> :split | execute 'terminal ...
 
+nnoremap J gJ
+
+" go to previous buffer
+nmap gb :b#<cr>
+
+" open vimtex table of contents
+nmap gc :VimtexTocToggle<cr>
+
