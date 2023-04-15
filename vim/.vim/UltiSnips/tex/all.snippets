@@ -24,11 +24,11 @@ ${1:${VISUAL}}
 \}$0
 endsnippet
 
-snippet d; "datetime comment" A
+snippet /d(t)?;/ "datetime comment" rA
 % `date '+%a %m-%d-%Y %I:%M:%S %p'`
 endsnippet
 
-snippet intertext "intertext but multiline"
+snippet /i(nterte)?xt/ "intertext but multiline" rA
 \\intertext{%
 	${1:${VISUAL}} %
 }
@@ -38,6 +38,16 @@ snippet eqn "equation" i
 ${1:left}
 =
 ${2:right}
+endsnippet
+
+snippet pp "paragraph"
+\\paragraph{$1}
+endsnippet
+
+snippet tabular "tabular env for tables"
+\begin{tabular}{$1}
+$2
+\end{tabular}
 endsnippet
 
 snippet int "indefinite integral"
@@ -54,7 +64,7 @@ snippet ^ "superscript" iA
 ^{$1}$0
 endsnippet
 
-snippet _ "subscript" iA
+snippet _ "subscript" i
 _{$1}$0
 endsnippet
 
@@ -135,10 +145,8 @@ snippet '' "single quotes in text mode" Ai
 \`$1'$0
 endsnippet
 
-snippet minted "minted environment"
-\begin{minted}{$1}
-$2
-\end{minted}
+snippet  "bold" iA
+\textbf{${1:${VISUAL}}}
 endsnippet
 
 priority -1
@@ -152,6 +160,16 @@ priority -100
 
 snippet /t(ext)?/ "text in math mode" r
 \\text{${1:${VISUAL}}}$0
+endsnippet
+
+snippet /m(inted)?/ "minted environment" r
+\begin{minted}{${1:text}}
+${2:${VISUAL}}
+\end{minted}
+endsnippet
+
+snippet /m(int)?i(nline)?/ "minted inline" r
+\mintinline{${1:text}}{${2:${VISUAL}}}
 endsnippet
 
 
