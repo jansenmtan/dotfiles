@@ -124,6 +124,10 @@ augroup MyVimtex
   autocmd!
   autocmd User VimtexEventQuit call vimtex#compiler#clean(0)
   " need to also remove _minted cache
+  " remove directories matching the pattern /_minted*/ (which happens to be
+  " the minted cache)
+  autocmd User VimtexEventQuit execute "silent !find . -type d -name '_minted*' -exec rm -rf {} +" 
+			  \ | echo "Minted cache removed."
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
