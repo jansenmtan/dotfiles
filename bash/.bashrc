@@ -156,7 +156,7 @@ export PATH=$PATH:/opt/riscv/bin
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # neovim man pager
-export MANPAGER='nvim -c "set ft=man" -'
+export MANPAGER='nvim +Man!'
 
 # https://blog.thepoon.fr/osuLinuxAudioLatency/
 # export WINEPREFIX="$HOME/.wine_osu" # This is the path to a hidden folder in your home folder.
