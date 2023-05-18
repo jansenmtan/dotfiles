@@ -83,7 +83,23 @@ Plug 'junegunn/vim-easy-align'
 Plug 'preservim/nerdtree'
 "Plug 'nvim-lua/plenary.nvim'
 "Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" LSP Support
+Plug 'neovim/nvim-lspconfig'                           " Required
+Plug 'williamboman/mason.nvim', {'do': ':MasonUpdate'} " Optional
+Plug 'williamboman/mason-lspconfig.nvim'               " Optional
+
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'     " Required
+Plug 'hrsh7th/cmp-nvim-lsp' " Required
+Plug 'L3MON4D3/LuaSnip'     " Required
+
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
 call plug#end()
+
+" ========= start plugin config =========
 
 " 'xelatex --interaction=nonstopmode --shell-escape $*'
 
@@ -123,7 +139,6 @@ let g:vimtex_indent_ignored_envs = ['code', 'minted', 'itemize', 'enumerate']
 augroup MyVimtex
   autocmd!
   autocmd User VimtexEventQuit call vimtex#compiler#clean(0)
-  " need to also remove _minted cache
   " remove directories matching the pattern /_minted*/ (which happens to be
   " the minted cache)
   autocmd User VimtexEventQuit execute "silent !find . -type d -name '_minted*' -exec rm -rf {} +" 
@@ -135,6 +150,28 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" LSP Zero config
+lua <<EOF
+local lsp = require('lsp-zero').preset({})
+
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({buffer = bufnr})
+end)
+
+lsp.ensure_installed({
+	'rust_analyzer',
+	'pyright',
+	'tsserver'
+})
+
+-- (Optional) Configure lua language server for neovim
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.setup()
+EOF
+
+" ========= end plugin config =========
 
 set tabstop=4
 set softtabstop=4
